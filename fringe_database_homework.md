@@ -268,11 +268,9 @@ id |       name       | id | show_id | user_id | id | created_at |         name 
  14 | Chris Sloan      | 16 |       2 |      14 |  2 | 2015-08-23 | Shitfaced Shakespeare | 16.50
 (7 rows)
 
-fringe_shows=# SELECT name FROM users JOIN shows ON users.id = shows_users.user_id JOIN shows ON shows_users.show_id WHERE shows.name = 'Shitfaced Shakespeare';
-ERROR:  missing FROM-clause entry for table "shows_users"
-LINE 1: SELECT name FROM users JOIN shows ON users.id = shows_users....
-                                                        ^
 Select all of the user names and the count of shows they're going to see.
+
+
 
 SELECT all users who are going to a show at 17:15.
 
