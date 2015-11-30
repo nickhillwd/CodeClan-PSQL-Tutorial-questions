@@ -235,14 +235,30 @@ fringe_shows=# SELECT name FROM users WHERE name LIKE 'N%';
 
 Select the names of users whose names contain "mi".
 
+fringe_shows=# SELECT name FROM users WHERE name LIKE '%mi%';
+      name
+-----------------
+ Gary Carmichael
+(1 row)
+
 Section 3
 
 The following questions can be answered by using nested SQL statements but ideally you should learn about JOIN clauses to answer them.
 
 Select the time for the Edinburgh Royal Tattoo.
 
+ringe_shows=# SELECT time FROM times JOIN shows ON shows.id = times.id WHERE shows.name = 'Edinburgh Royal Tattoo';
+ time
+-------
+ 22:00
+(1 row)
+
 Select the number of users who want to see "Shitfaced Shakespeare".
 
+fringe_shows=# SELECT name FROM users JOIN shows ON users.id = shows_users.user_id JOIN shows ON shows_users.show_id WHERE shows.name = 'Shitfaced Shakespeare';
+ERROR:  missing FROM-clause entry for table "shows_users"
+LINE 1: SELECT name FROM users JOIN shows ON users.id = shows_users....
+                                                        ^
 Select all of the user names and the count of shows they're going to see.
 
 SELECT all users who are going to a show at 17:15.
