@@ -159,19 +159,79 @@ This section involves more complex queries. You will need to go and find out abo
 
 Select the names and prices of all shows, ordered by price in ascending order.
 
+SELECT name, price FROM shows ORDER BY price ASC;
+                   name                    | price
+-------------------------------------------+-------
+ Two girls, one cup of comedy              |  6.00
+ Best of Burlesque                         |  7.99
+ Two become One                            |  8.50
+ Urinetown                                 |  8.50
+ Paul Dabek Mischief                       | 12.99
+ Le Haggis                                 | 12.99
+ Joe Stilgoe: Songs on Film â€“ The Sequel | 16.50
+ Game of Thrones - The Musical             | 16.50
+ Shitfaced Shakespeare                     | 16.50
+ Aaabeduation â€“ A Magic Show             | 17.99
+ Camille O'Sullivan                        | 17.99
+ Balletronics                              | 32.00
+ Edinburgh Royal Tattoo                    | 32.99
+(13 rows)
+
 Select the average price of all shows.
+
+fringe_shows=# SELECT AVG(price) FROM shows;
+         avg
+---------------------
+ 15.9569230769230769
+(1 row)
 
 Select the price of the least expensive show.
 
+ringe_shows=# SELECT MIN(price) FROM shows;
+ min
+------
+ 6.00
+(1 row)
+
 Select the sum of the price of all shows.
+
+ringe_shows=# SELECT SUM(price) FROM shows;
+  sum
+--------
+ 207.44
+(1 row)
 
 Select the sum of the price of all shows whose prices is less than £20.
 
+fringe_shows=# SELECT SUM(price) FROM shows WHERE price < '20.00';
+  sum
+--------
+ 142.45
+(1 row)
+
 Select the name and price of the most expensive show.
 
+ringe_shows=# SELECT (name,price) FROM shows WHERE price = (SELECT MAX(price) FROM shows);
+               row
+----------------------------------
+ ("Edinburgh Royal Tattoo",32.99)
+(1 row)
+
 Select the name and price of the second from cheapest show.
+fringe_shows=# SELECT (name,price) FROM shows WHERE price = (SELECT MIN(price) FROM shows WHERE price NOT IN (SELECT MIN(price) FROM shows));
+            row
+----------------------------
+ ("Best of Burlesque",7.99)
+(1 row)
 
 Select the names of all users whose names start with the letter "N".
+
+fringe_shows=# SELECT name FROM users WHERE name LIKE 'N%';
+     name
+---------------
+ Nick Ridell
+ Nicholas Hill
+(2 rows)
 
 Select the names of users whose names contain "mi".
 
