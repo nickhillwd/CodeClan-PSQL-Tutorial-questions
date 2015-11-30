@@ -255,6 +255,19 @@ ringe_shows=# SELECT time FROM times JOIN shows ON shows.id = times.id WHERE sho
 
 Select the number of users who want to see "Shitfaced Shakespeare".
 
+SELECT * FROM users JOIN shows_users ON shows_users.user_id = users.id JOIN shows ON shows.id = shows_users.show_id WHERE shows.name = 'Shitfaced Shakespeare';
+
+id |       name       | id | show_id | user_id | id | created_at |         name          | price
+----+------------------+----+---------+---------+----+------------+-----------------------+-------
+  3 | Keith Douglas    | 10 |       2 |       3 |  2 | 2015-08-23 | Shitfaced Shakespeare | 16.50
+  4 | Callum Dougan    | 11 |       2 |       4 |  2 | 2015-08-23 | Shitfaced Shakespeare | 16.50
+  6 | Daniel Gillespie | 12 |       2 |       6 |  2 | 2015-08-23 | Shitfaced Shakespeare | 16.50
+  7 | Bethany Fraser   | 13 |       2 |       7 |  2 | 2015-08-23 | Shitfaced Shakespeare | 16.50
+  9 | Evelyn Utterson  | 14 |       2 |       9 |  2 | 2015-08-23 | Shitfaced Shakespeare | 16.50
+ 11 | Nicholas Hill    | 15 |       2 |      11 |  2 | 2015-08-23 | Shitfaced Shakespeare | 16.50
+ 14 | Chris Sloan      | 16 |       2 |      14 |  2 | 2015-08-23 | Shitfaced Shakespeare | 16.50
+(7 rows)
+
 fringe_shows=# SELECT name FROM users JOIN shows ON users.id = shows_users.user_id JOIN shows ON shows_users.show_id WHERE shows.name = 'Shitfaced Shakespeare';
 ERROR:  missing FROM-clause entry for table "shows_users"
 LINE 1: SELECT name FROM users JOIN shows ON users.id = shows_users....
